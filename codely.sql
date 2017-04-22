@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 22 2017 г., 14:36
+-- Время создания: Апр 22 2017 г., 15:54
 -- Версия сервера: 10.1.19-MariaDB
 -- Версия PHP: 5.6.28
 
@@ -90,7 +90,27 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` (`id_comment`, `id_user`, `id_article`, `text_comment`, `date_comment`, `likes_comment`, `is_answer`) VALUES
 (37, 29, 107, 'Абстракция, инкапсуляция, наследование и полиморфизм — всё это есть в ООП.', '1482002599', 1, 0),
 (38, 28, 112, 'Скорее всего, да.', '1482002679', 1, 0),
-(40, 28, 115, 'ПРивет!', '1492859870', 0, 0);
+(40, 28, 115, 'ПРивет!', '1492859870', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `favorite_articles`
+--
+
+CREATE TABLE `favorite_articles` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_article` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `favorite_articles`
+--
+
+INSERT INTO `favorite_articles` (`id`, `id_user`, `id_article`) VALUES
+(12, 28, 107),
+(9, 28, 115);
 
 -- --------------------------------------------------------
 
@@ -103,6 +123,13 @@ CREATE TABLE `favorite_authors` (
   `id_user` int(11) NOT NULL,
   `id_author` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `favorite_authors`
+--
+
+INSERT INTO `favorite_authors` (`id`, `id_user`, `id_author`) VALUES
+(12, 28, 2);
 
 -- --------------------------------------------------------
 
@@ -165,7 +192,7 @@ INSERT INTO `likes_article` (`id_like`, `id_article`, `id_user`) VALUES
 (120, 115, 0),
 (121, 115, 0),
 (122, 115, 0),
-(136, 115, 28);
+(143, 115, 28);
 
 -- --------------------------------------------------------
 
@@ -186,7 +213,8 @@ CREATE TABLE `likes_comment` (
 INSERT INTO `likes_comment` (`id_like_com`, `id_comment`, `id_user`) VALUES
 (5, 32, 1),
 (7, 37, 29),
-(8, 38, 28);
+(8, 38, 28),
+(14, 40, 28);
 
 -- --------------------------------------------------------
 
@@ -243,6 +271,12 @@ ALTER TABLE `comment`
   ADD PRIMARY KEY (`id_comment`);
 
 --
+-- Индексы таблицы `favorite_articles`
+--
+ALTER TABLE `favorite_articles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `favorite_authors`
 --
 ALTER TABLE `favorite_authors`
@@ -274,7 +308,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `article`
 --
 ALTER TABLE `article`
-  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 --
 -- AUTO_INCREMENT для таблицы `blacklist`
 --
@@ -286,20 +320,25 @@ ALTER TABLE `blacklist`
 ALTER TABLE `comment`
   MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
+-- AUTO_INCREMENT для таблицы `favorite_articles`
+--
+ALTER TABLE `favorite_articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
 -- AUTO_INCREMENT для таблицы `favorite_authors`
 --
 ALTER TABLE `favorite_authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `likes_article`
 --
 ALTER TABLE `likes_article`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 --
 -- AUTO_INCREMENT для таблицы `likes_comment`
 --
 ALTER TABLE `likes_comment`
-  MODIFY `id_like_com` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_like_com` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT для таблицы `user`
 --

@@ -8,14 +8,16 @@
 	$likes = $article['likes_article'];
 ?>
 
-<article class="article">
-	<header class="article__header">
-		<a class="article__user-link" href="index.php?action=user-space&id=<?=$article["id_user"] ?>&fallback=<?=$fallback?>">
-			<img class="article__avatar" src="<?=get_user_by_id($link, $article["id_user"])["photo_user"] ?>" width="50" height="50">
-		</a>
-		<span class="article__nickname">
-			<?=$name." ".$surname?>
-		</span>
+<article class="article" style="text-align: left;">
+	<header class="article__header" style="justify-content: space-between;">
+		<div>
+			<a class="article__user-link" href="index.php?action=user-space&id=<?=$article["id_user"] ?>&fallback=<?=$fallback?>">
+				<img class="article__avatar" src="<?=get_user_by_id($link, $article["id_user"])["photo_user"] ?>" width="50" height="50">
+			</a>
+			<span class="article__nickname">
+				<?=$name." ".$surname?>
+			</span>
+		</div>
 
 		<?php if($article['is_question']): ?>
 			<span class="question_tag">Вопрос</span>
@@ -23,6 +25,7 @@
 		<!-- Вопрос -->
 		<!-- Редактировать -->
 		<!-- Удалить -->
+		<a href="index.php?action=unfave-article&id_article=<?=$id?>">Удалить из избранного</a>
 	</header>
 	<h2 class="article__title">
 		<a href="article.php?id=<?=$article['id_article'] ?>">

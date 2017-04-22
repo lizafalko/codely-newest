@@ -60,16 +60,21 @@
 	}
 
 	function check_comment_likes($link, $id_comment) {
-		$query = "SELECT id_user FROM likes_comment WHERE id_comment=".$id_comment;
+		$query = "SELECT * FROM likes_comment WHERE id_comment=".$id_comment." AND id_user=".$_SESSION['user'];
 		$result = mysqli_query($link, $query);
 		if (!$result) 
 			die (mysql_error());
 
-		foreach (mysqli_fetch_array($result) as $user_like) {
-			if ($_SESSION['user'] == $user_like)
-				return true;
-		}
-		return false;
+		return mysqli_num_rows($result) > 0;
+	}
+
+	function get_comment_likes($link, $id_comment) {
+		$query = "SELECT * FROM likes_comment WHERE id_comment=".$id_comment;
+		$result = mysqli_query($link, $query);
+		if (!$result) 
+			die (mysql_error());
+
+		return mysqli_num_rows($result);
 	}
 
 	function like_comment($link, $id_comment) {
@@ -123,6 +128,47 @@
 
 		return $articles;
 	}
+
+	function check_if_fave_article($link, $user, $article) {
+		$query = "SELECT * FROM favorite_articles WHERE id_user=".$user." AND id_article=".$article;
+		$result = mysqli_query($link, $query);
+
+		if (!$result)
+			die(mysql_error());
+
+		$n = mysqli_num_rows($result);
+
+		return $n > 0;
+	}
+
+	function toggle_fave_article($link, $user, $article) {
+		if (!check_if_fave_article($link, $user, $article)) {
+			$query = "INSERT INTO favorite_articles (id_user, id_article) VALUES (".$user.", ".$article.")";
+		} else {
+			$query = "DELETE FROM favorite_articles WHERE id_user=".$user." AND id_article=".$article;
+		}
+		$result = mysqli_query($link, $query);
+		if (!$result)
+			die(mysql_error());
+	}
+
+	function get_fave_articles($link, $user) {
+		$query = "SELECT * FROM favorite_articles WHERE id_user=".$user;
+		$result = mysqli_query($link, $query);
+		if (!$result)
+			die(mysql_error());
+
+		$n = mysqli_num_rows($result);
+		$articles = array();
+
+		for($i = 0; $i < $n; $i++) {
+			$row = mysqli_fetch_assoc($result);
+			$articles[] = $row;
+		}
+
+		return $articles;
+	}
+
 
 	function check_if_fave_author($link, $user, $author) {
 		$query = "SELECT * FROM favorite_authors WHERE id_user=".$user." AND id_author=".$author;

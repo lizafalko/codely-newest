@@ -10,9 +10,8 @@
 
 	if ($action == "like") {
 		$id_article = $_GET["id"];
-		$fallback = $_GET["fallback"];
 		like_article($link, $id_article);
-		header("Location: index.php");
+		header("Location: article.php?id=".$id_article);
 	}
 
 	if ($action == "search") {
@@ -39,7 +38,7 @@
 
 
 	} else if ($action == "edit-article") {
-		$callback = $_GET['callback'];
+		$article_id = $_GET['id'];
 		$article = get_one_article($link, $_GET['id']);
 
 		if(empty($_POST)) {
@@ -53,7 +52,7 @@
 		}
 
 	} else if ($action == "edit-question") {
-		$callback = $_GET['callback'];
+		$article_id = $_GET['id'];
 		$article = get_one_article($link, $_GET['id']);
 
 		if(empty($_POST)) {
@@ -163,6 +162,26 @@
 			$author = $_GET['id_author'];
 
 			toggle_fave_author($link, $user, $author);
+
+			header("Location: index.php?action=bookmarks");
+		}
+
+	} else if ($action == "fave-article") {
+		if (isset($_SESSION['user'])) {
+			$user = $_SESSION['user'];
+			$article = $_GET['id_article'];
+
+			toggle_fave_article($link, $user, $article);
+
+			header("Location: article.php?id=".$article);
+		}
+
+	} else if ($action == "unfave-article") {
+		if (isset($_SESSION['user'])) {
+			$user = $_SESSION['user'];
+			$article = $_GET['id_article'];
+
+			toggle_fave_article($link, $user, $article);
 
 			header("Location: index.php?action=bookmarks");
 		}

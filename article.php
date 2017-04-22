@@ -20,7 +20,6 @@
 		header("Location: article.php?id=".$id_article);
 
 
-
 	} else if($action == "like-article") {
 		$id_article = $_GET['article'];
 		like_article($link, $id_article);

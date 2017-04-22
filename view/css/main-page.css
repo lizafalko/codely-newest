@@ -287,6 +287,22 @@
 	margin-left: 10px;
 }
 
+.article__fave-icon {
+	color: #ffd454;
+	font-size: 20px;
+	margin-left: 5px;
+	transition: all .3s;
+}
+
+.article__fave-icon:hover {
+	transform: scale(1.5);
+	margin-left: 10px;
+}
+
+.article__user-link {
+	text-decoration: none !important;
+}
+
 .article__avatar {
 	min-height: 25px;
 	min-width: 25px;
@@ -314,6 +330,16 @@
 	border: none;
 	background: none;
 	box-shadow: none;
+}
+
+.question_tag {
+	display: inline-block;
+	line-height: 1.5;
+	padding: 2px 9px;
+	margin-left: 15px;
+	color: white;
+	background-color: grey;
+	border-radius: 30px;
 }
 
 .emphasis-link {

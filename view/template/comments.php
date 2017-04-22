@@ -40,14 +40,15 @@
 		<?=$comment["text_comment"] ?>
 	</p>
 	<footer class="comment__footer comment__part">
-		<section class="comment_likes">
-			<a class="article__like"
-				href="#">
-				<!-- ДОДЕЛАТЬ! -->
-				<?php if(check_article_likes($link, $id)): ?>	<!-- if already liked -->
-				<span class="glyphicon glyphicon-heart article__like-icon"></span>
+		<section class="comment_likes" style="display: flex; align-items: center;">
+			<span>
+				<?=get_comment_likes($link, $comment["id_comment"]) ?>
+			</span>
+			<a class="article__like" href="article.php?action=like-comment&article=<?=$_GET['id']?>&comment=<?=$comment['id_comment']?>">
+				<?php if(check_comment_likes($link, $comment["id_comment"])): ?>	<!-- if already liked -->
+					<span class="glyphicon glyphicon-heart article__like-icon"></span>
 				<?php else: ?>
-				<span class="glyphicon glyphicon-heart-empty article__like-icon"></span>
+					<span class="glyphicon glyphicon-heart-empty article__like-icon"></span>
 				<?php endif ?>
 			</a>
 		</section>

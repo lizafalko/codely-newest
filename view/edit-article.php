@@ -14,19 +14,19 @@
 		<link href="view/css/main-page.css" rel="stylesheet">
 		<link href="view/css/common.css" rel="stylesheet">
 	</head>
-	<body>
-		<header>
-			<div class="container">
-				<h3 class="header-reg">Редактировать статью</h3>
-			</div>
+	<body class="body body--night">
+		<header class="main-header">
+			<?php require_once("view/template/header.php") ?>
+			<div class="main-header__border"></div>
 		</header>
-		<main>
+		<main class="main">
 			<div class="container">
-				<section class="article new-article">
-					<a href="<?=$callback?>">
-						<i class="glyphicon glyphicon-menu-left"></i><span class="sign">Назад</span>
+				<div class="article article--transparent">
+					<a class="emphasis-link" href="article.php?id=<?=$_GET['id']?>">
+						<i class="glyphicon glyphicon-menu-left"></i><span class="sign"></span>
 					</a>
-				</section>
+				</div>
+				Редактировать статью
 				<form class="create-article-form" action="index.php?action=edit-article&id=<?=$id?>&callback=<?=$callback?>" method="POST">
 					<div class="form-group">
 						<input class="created-form__theme form-control" type="text" name="title" placeholder="Введите название" value="<?=$title?>" required autofocus>
@@ -40,8 +40,9 @@
 				</form>
 			</div>
 		</main>
-		<footer class="page-footer">
-			<?php require_once("footer.php"); ?>
+		<footer class="main-footer">
+			<?php require_once("view/template/footer.php"); ?>
 		</footer>
+		<script type="text/javascript" src="view/js/daydream.js"></script>
 	</body>
 </html>

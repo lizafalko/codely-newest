@@ -31,12 +31,16 @@
 						$fave_name = $fave_author['name_user'];
 						$fave_surname = $fave_author['surname_user'];
 					?>
-					<article class="article">
-						<a class="favorite--author-links" href="index.php?action=user-space&id=<?=$author['id_author']?>">
-							<?=$fave_name." ".$fave_surname ?>
-						</a>
-
-						<a href="index.php?action=unfave&id_author=<?=$author['id_author']?>" style="float: right;">Удалить</a>
+					<article class="article" style="display: flex; align-items: center; justify-content: space-between;">
+						<div>
+							<a class="article__user-link" href="index.php?action=user-space&id=<?=$author['id_author'] ?>">
+								<img class="article__avatar" src="<?=get_user_by_id($link, $author['id_author'])["photo_user"] ?>" width="50" height="50">
+							</a>
+							<span class="article__nickname">
+								<?=$fave_name." ".$fave_surname ?>
+							</span>
+						</div>
+						<a href="index.php?action=unfave&id_author=<?=$author['id_author']?>">Удалить</a>
 					</article>
 				<?php endforeach ?>
 
@@ -48,18 +52,16 @@
 		</div>
 		<div class="container container--right">
 			<h3 class="favorite--materials">Избранные материалы</h3>
-			<article class="article">
-				<a class="favorite--materials-links" href="#">Александр ИЛьяшенко</a>
-			</article>
-			<article class="article">
-				<a class="favorite--materials-links" href="#">Александр ИЛьяшенко</a>
-			</article>
-			<article class="article">
-				<a class="favorite--materials-links" href="#">Александр ИЛьяшенко</a>
-			</article>
-			<article class="article">
-				<a class="favorite--materials-links" href="#">Александр ИЛьяшенко</a>
-			</article>
+			<?php if(get_fave_articles($link, $_SESSION['user'])): ?>
+				<?php foreach(get_fave_articles($link, $_SESSION['user']) as $fave_article) {
+					$article = get_one_article($link, $fave_article['id_article']);
+					include('view/template/article--preview.php');
+				}?>
+			<?php else: ?>
+				<article class="article">
+					У вас пока нет избранных материалов.
+				</article>
+			<?php endif ?>
 		</div>
 	</main>
 	<footer class="main-footer">
