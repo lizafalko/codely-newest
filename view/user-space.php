@@ -102,6 +102,10 @@
 					<?=count_comments($link, $_GET["id"]) ?>
 				</p>
 				<p>
+					Рейтинг:
+					<?=get_rating($link, $_GET["id"]) ?>
+				</p>
+				<p>
 					Обо мне:
 					<?=$about ?>
 				</p>

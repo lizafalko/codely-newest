@@ -72,6 +72,11 @@
 			$result = mysqli_query($link, $updating_query);
 			if (!$result) 
 				die (mysql_error());
+
+			$updating_query = "UPDATE user SET rate_user=rate_user+1 WHERE id_user=".get_author_by_article($link, $id_article);
+			$result = mysqli_query($link, $updating_query);
+			if (!$result) 
+				die (mysql_error());
 		} else {
 			$deleting_query = "DELETE FROM likes_article WHERE id_article=".$id_article." AND id_user=".$_SESSION['user'];
 			$result = mysqli_query($link, $deleting_query);
@@ -79,6 +84,11 @@
 				die (mysql_error());
 
 			$updating_query = "UPDATE article SET likes_article=likes_article-1 WHERE id_article=".$id_article;
+			$result = mysqli_query($link, $updating_query);
+			if (!$result) 
+				die (mysql_error());
+
+			$updating_query = "UPDATE user SET rate_user=rate_user-1 WHERE id_user=".get_author_by_article($link, $id_article);
 			$result = mysqli_query($link, $updating_query);
 			if (!$result) 
 				die (mysql_error());
@@ -115,6 +125,12 @@
 			$result = mysqli_query($link, $updating_query);
 			if (!$result) 
 				die (mysql_error());
+
+			$updating_query = "UPDATE user SET rate_user=rate_user+1 WHERE id_user=".get_author_by_comment($link, $id_comment);
+			$result = mysqli_query($link, $updating_query);
+			if (!$result) 
+				die (mysql_error());
+
 		} else {
 			$deleting_query = "DELETE FROM likes_comment WHERE id_comment=".$id_comment." AND id_user=".$_SESSION['user'];
 			$result = mysqli_query($link, $deleting_query);
@@ -122,6 +138,11 @@
 				die (mysql_error());
 
 			$updating_query = "UPDATE comment SET likes_comment=likes_comment-1 WHERE id_comment=".$id_comment;
+			$result = mysqli_query($link, $updating_query);
+			if (!$result) 
+				die (mysql_error());
+
+			$updating_query = "UPDATE user SET rate_user=rate_user-1 WHERE id_user=".get_author_by_comment($link, $id_comment);
 			$result = mysqli_query($link, $updating_query);
 			if (!$result) 
 				die (mysql_error());
@@ -214,6 +235,13 @@
 		$result = mysqli_query($link, $query);
 		if (!$result)
 			die(mysql_error());
+	}
+
+	function get_rating($link, $id) {
+		$query = "SELECT rate_user FROM user WHERE id_user=".$id;
+		$result = mysqli_query($link, $query);
+
+		return mysqli_fetch_array($result)[0];
 	}
 
 	function get_fave_articles($link, $user) {
@@ -355,6 +383,17 @@
 
 	function get_author_by_article($link, $article_id) {
 		$query = "SELECT * FROM article WHERE id_article=".$article_id;
+		$result = mysqli_query($link, $query);
+
+		if (!$result) 
+			die (mysql_error());
+
+		$author = mysqli_fetch_assoc($result)["id_user"];
+		return $author;
+	}
+
+	function get_author_by_comment($link, $comment_id) {
+		$query = "SELECT * FROM comment WHERE id_comment=".$comment_id;
 		$result = mysqli_query($link, $query);
 
 		if (!$result) 
