@@ -35,11 +35,6 @@
 							<input type="password" id="password" name="password" placeholder="Введите пароль" class="form-control" required>
 						</div>
 					</div>
-					<div class="checkbox control-group">
-						<label>
-							<input type="checkbox"> Запомнить меня
-						</label>
-					</div>
 					<div class="control-group">
 						<button type="submit" class="new-article__button btn btn-primary">
 							Войти
