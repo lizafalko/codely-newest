@@ -20,6 +20,11 @@
 .favorite--materials {
 	margin-bottom: 40px;
 	text-align: center;
+	
+}
+
+.favorite--materials:hover {
+	
 }
 
 .article-est {

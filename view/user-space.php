@@ -40,18 +40,18 @@
 
 			<?php if($_GET['id'] != $_SESSION['user']): ?>
 				<?php if(!check_if_fave_author($link, $_SESSION['user'], $_GET['id'])): ?>
-					<a href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Добавить в избранное</a>
+					<a class="add-to-list" href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Добавить в избранное</a>
 				<?php else: ?>
-					<a href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Убрать из избранного</a>
+					<a class="add-to-list" href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Убрать из избранного</a>
 				<?php endif ?>
 
 				<?php if(!check_if_blacklisted($link, $_SESSION['user'], $_GET['id'])): ?>
-					<a href="index.php?action=blacklist&id=<?=$_GET['id']?>">Добавить в ЧС</a>
+					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Добавить в ЧС</a>
 				<?php else: ?>
-					<a href="index.php?action=blacklist&id=<?=$_GET['id']?>">Убрать из ЧС</a>
+					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Убрать из ЧС</a>
 				<?php endif ?>
 			<?php else: ?>
-				<a href="index.php?action=edit-user">Редактировать</a>
+				<a class="add-to-list" href="index.php?action=edit-user"><i class="glyphicon glyphicon-pencil pencil-color edit-list"></i>Редактировать</a>
 			<?php endif ?>
 		</div>
 		<div class="container container--right">

@@ -6,10 +6,10 @@
 			<input type="checkbox" id="hide-create-comment">
 			<label for="hide-create-comment">Написать комментарий..</label>
 			<div class="form-group">
-				<textarea class="form-control" name="comment-text" rows="5" placeholder="Введите текст комментария" style="max-height: 114px; max-width: 578px; resize: none;" required></textarea>
+				<textarea class="form-control" name="comment-text" rows="5" placeholder="Введите текст комментария" style="max-height: 114px; max-width: 900px; margin-top: 14px; resize: none;" required></textarea>
 			</div>
 			<div class="form-group" style="text-align: right;">
-				<button class="btn btn-primary">Отправить</button>
+				<button class="btn btn-primary sand-button">Отправить</button>
 			</div>
 		</form>
 	</section>
@@ -31,7 +31,7 @@
 			if ($user_id == $comment["id_user"]) {
 				echo '
 					<a class="article__delete" style="float: right;" href="article.php?action=delete&id-article='.$comment["id_article"].'&id='.$comment["id_comment"].'">
-						<i class="glyphicon glyphicon-remove"></i>
+						<i class="glyphicon glyphicon-remove remove-color"></i>
 					</a>
 				';
 			}

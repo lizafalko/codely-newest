@@ -56,7 +56,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<button type="submit" class="new-article__button btn btn-primary">
+						<button type="submit" class="new-article__button btn btn-primary sand-button">
 							Зарегистрироваться
 						</button>
 					</div>

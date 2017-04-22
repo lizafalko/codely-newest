@@ -321,7 +321,7 @@
 }
 
 .article--ident {
-	margin-left: 100px;
+	margin-left: 700px;
 }
 
 .article--transparent,
@@ -338,8 +338,9 @@
 	padding: 2px 9px;
 	margin-left: 15px;
 	color: white;
-	background-color: grey;
+	background-color: #D79B83;
 	border-radius: 30px;
+	border: 1px solid #ECC6BA;
 }
 
 .emphasis-link {
@@ -527,4 +528,51 @@
 	background-color: #D79B83;
 	text-decoration: none;
 	color: black;
+}
+
+.sand-button {
+    padding: 8px 28px !important;
+    border: 1px solid #ECC6BA !important;
+	transition: background-color .7s ease !important;
+	background-color: #D79B83 !important;
+	border-radius: 9px !important;
+	outline-color: #D7B382 !important;
+}
+
+.sand-button:hover {
+	background-color: #b39587 !important;
+}
+
+.remove-color {
+	color: #D79B83 !important;
+}
+
+.pencil-color {
+	color: silver !important;
+}
+
+.add-to-list {
+	display: inline-block;
+	margin-top: 20px;
+	margin-right: 15px;
+	border-radius: 18px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+	border: 1px solid #ECC6BA;
+	transition: background-color .7s ease;
+	color: white;
+	background-color: #D79B83;
+}
+
+.add-to-list:hover {
+	background-color: #b39587;
+	text-decoration: none;
+	color: white;
+}
+
+.edit-list {
+	margin-right: 10px; 
+	color: white !important;
 }

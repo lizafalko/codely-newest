@@ -28,11 +28,11 @@
 		<?php if($article['id_user'] == $_SESSION['user']): ?>
 			<?php if($article['is_question']): ?>
 				<a href="index.php?action=edit-question&id=<?=$id?>">
-					<span class="glyphicon glyphicon-pencil article__fave-icon"></span>
+					<span class="glyphicon glyphicon-pencil article__fave-icon pencil-color"></span>
 				</a>
 			<?php else: ?>
 				<a href="index.php?action=edit-article&id=<?=$id?>">
-					<span class="glyphicon glyphicon-pencil article__fave-icon"></span>
+					<span class="glyphicon glyphicon-pencil article__fave-icon pencil-color"></span>
 				</a>
 			<?php endif ?>
 		<?php endif ?>
@@ -41,13 +41,13 @@
 
 		<?php if($article['id_user'] == $_SESSION['user']): ?>
 			<a href="index.php?action=delete&id=<?=$id?>">
-				<span class="glyphicon glyphicon-remove article__like-icon"></span>
+				<span class="glyphicon glyphicon-remove article__like-icon remove-color"></span>
 			</a>
 		<?php endif ?>
 	</header>
 	<div>
 		<?php if(check_same($link, $_SESSION['user'], $id)): ?>
-			<span class="hello">Отметок &laquo;У меня похожий вопрос&raquo;: <?=get_same($link, $_GET['id'])?></span>
+			<span class="hello" style="background-color: #D79B83; color: white;">Отметок &laquo;У меня похожий вопрос&raquo;: <?=get_same($link, $_GET['id'])?></span>
 		<?php else: ?>
 			<a class="hello" href="index.php?action=same&id=<?=$id?>">У меня похожий вопрос</a>
 		<?php endif ?>

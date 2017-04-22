@@ -37,7 +37,7 @@
 						<textarea class="form-control" rows="16" name="text" placeholder="Введите текст" style="resize:none;" required></textarea>
 					</div>
 					<div class="form-group" style="text-align: right;">
-						<button class="btn btn-primary" type="submit">Опубликовать</button>
+						<button class="btn btn-primary sand-button" type="submit">Опубликовать</button>
 					</div>
 				</form>
 			</div>
