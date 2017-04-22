@@ -223,7 +223,7 @@
 		for($i = 0; $i < $n; $i++) {
 			$row = mysqli_fetch_assoc($result);
 
-			if (strstr($row['title_article'].$row['text_article'], $search_query) !== false) {
+			if (strstr(mb_strtolower($row['title_article'].$row['text_article']), mb_strtolower($search_query)) !== false) {
 				$articles[] = $row;
 			}
 

@@ -509,3 +509,22 @@
 
 
 }
+
+.hello {
+	display: inline-block;
+	margin-top: 20px;
+	border-radius: 18px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+	border: 1px solid #ECC6BA;
+	transition: background-color .7s ease;
+	color: black;
+}
+
+.hello:hover {
+	background-color: #D79B83;
+	text-decoration: none;
+	color: black;
+}

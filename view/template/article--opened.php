@@ -22,11 +22,6 @@
 			<span class="question_tag">Вопрос</span>
 		<?php endif ?>
 
-		<?php if(check_same($link, $_SESSION['user'], $id)): ?>
-			<span>Отметок &laquo;У меня похожий вопрос&raquo;: <?=get_same($link, $_GET['id'])?></span>
-		<?php else: ?>
-			<a href="index.php?action=same&id=<?=$id?>">У меня похожий вопрос</a>
-		<?php endif ?>
 
 
 		<!-- Редактировать -->
@@ -50,6 +45,14 @@
 			</a>
 		<?php endif ?>
 	</header>
+	<div>
+		<?php if(check_same($link, $_SESSION['user'], $id)): ?>
+			<span class="hello">Отметок &laquo;У меня похожий вопрос&raquo;: <?=get_same($link, $_GET['id'])?></span>
+		<?php else: ?>
+			<a class="hello" href="index.php?action=same&id=<?=$id?>">У меня похожий вопрос</a>
+		<?php endif ?>
+	
+	</div>
 	<h2 class="article__title">
 		<a href="article.php?id=<?=$article['id_article'] ?>">
 			<?=$title?>
