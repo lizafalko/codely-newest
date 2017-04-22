@@ -10,6 +10,7 @@
 		<title>Редактировать статью</title>
 
 		<link href="view/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="view/css/semantic.min.css" rel="stylesheet"> -->
 		<link href="view/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 		<link href="view/css/main-page.css" rel="stylesheet">
 		<link href="view/css/common.css" rel="stylesheet">
@@ -22,22 +23,24 @@
 		<main class="main">
 			<div class="container">
 				<div class="article article--transparent">
-					<a class="emphasis-link" href="article.php?id=<?=$_GET['id']?>">
+					<a class="emphasis-link" href="index.php">
 						<i class="glyphicon glyphicon-menu-left"></i><span class="sign"></span>
 					</a>
 				</div>
-				Редактировать статью
-				<form class="create-article-form" action="index.php?action=edit-article&id=<?=$id?>&callback=<?=$callback?>" method="POST">
-					<div class="form-group">
-						<input class="created-form__theme form-control" type="text" name="title" placeholder="Введите название" value="<?=$title?>" required autofocus>
-					</div>
-					<div class="form-group">
-						<textarea class="form-control" rows="16" name="text" placeholder="Введите текст" style="resize:none;" required><?=$text?></textarea>
-					</div>
-					<div class="form-group" style="text-align: right;">
-						<button class="btn btn-primary" type="submit">Опубликовать</button>
-					</div>
-				</form>
+				<div class="article">
+					<h4>Редактировать статью</h4>
+					<form class="create-article-form" action="index.php?action=edit-article&id=<?=$id?>&callback=<?=$callback?>" method="POST">
+						<div class="form-group">
+							<input class="created-form__theme form-control" type="text" name="title" placeholder="Введите название" value="<?=$title?>" required autofocus>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" rows="16" name="text" placeholder="Введите текст" style="resize:none;" required><?=$text?></textarea>
+						</div>
+						<div class="form-group" style="text-align: right;">
+							<button class="btn btn-primary" type="submit">Опубликовать</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</main>
 		<footer class="main-footer">

@@ -22,6 +22,7 @@
 	<link rel="icon" href="view/img/favicon.ico">
 	<title><?=$name?> <?=$surname?> &ndash; Codely</title>
 	<link href="view/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="view/css/semantic.min.css" rel="stylesheet"> -->
 	<link href="view/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 	<link href="view/css/main-page.css" rel="stylesheet">
 	<link href="view/css/user-space.css" rel="stylesheet">
@@ -43,6 +44,14 @@
 				<?php else: ?>
 					<a href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Убрать из избранного</a>
 				<?php endif ?>
+
+				<?php if(!check_if_blacklisted($link, $_SESSION['user'], $_GET['id'])): ?>
+					<a href="index.php?action=blacklist&id=<?=$_GET['id']?>">Добавить в ЧС</a>
+				<?php else: ?>
+					<a href="index.php?action=blacklist&id=<?=$_GET['id']?>">Убрать из ЧС</a>
+				<?php endif ?>
+			<?php else: ?>
+				<a href="index.php?action=edit-user">Редактировать</a>
 			<?php endif ?>
 		</div>
 		<div class="container container--right">

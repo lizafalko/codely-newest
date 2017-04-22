@@ -7,6 +7,7 @@
 	<link rel="icon" href="view/img/favicon.ico">
 	<title>Избранное &ndash; Codely</title>
 	<link href="view/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="view/css/semantic.min.css" rel="stylesheet"> -->
 	<link href="view/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 	<link href="view/css/main-page.css" rel="stylesheet">
 	<link href="view/css/user-space.css" rel="stylesheet">
@@ -68,5 +69,6 @@
 		<?php include('view/template/footer.php') ?>
 	</footer>
 	<script type="text/javascript" src="view/js/daydream.js"></script>
+	<!-- <script src="view/js/semantic.min.js"></script> -->
 </body>
 </html>

@@ -10,6 +10,7 @@
 		<title>Регистрация</title>
 
 		<link href="view/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="view/css/semantic.min.css" rel="stylesheet"> -->
 		<link href="view/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 		<link href="view/css/fields.css" rel="stylesheet">
 		<!-- <link href="view/css/common.css" rel="stylesheet"> -->

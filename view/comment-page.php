@@ -13,6 +13,7 @@
 		<title><?=$article['title_article']; ?></title>
 
 		<link href="view/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="view/css/semantic.min.css" rel="stylesheet"> -->
 		<link href="view/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 		<link href="view/css/article-view.css" rel="stylesheet">
 		<link href="view/css/common.css" rel="stylesheet">
@@ -38,5 +39,6 @@
 		<footer class="main-footer">
 			<?php require_once("view/template/footer.php"); ?> 
 		</footer>
+		<script type="text/javascript" src="view/js/daydream.js"></script>
 	</body>
 </html>

@@ -19,9 +19,19 @@
 
 	<main class="main">
 		<?php include('view/template/search.php') ?>
-		<?php $i = 0; foreach($articles as $article): ?>
+		<article class="article">
+			<a class="emphasis-link" href="index.php">
+				<i class="glyphicon glyphicon-menu-left" style="color: black;"></i><span class="sign"></span>
+			</a>
+			<h4 style="display: inline;">Результаты поиска по запросу &laquo;<?=$query?>&raquo;</h4>
+		</article>
+		<?php $i = 0; foreach($articles[0] as $article): ?>
 		<?php $fallback = "index.php#article".$i; include('view/template/article.php') ?>
 		<?php $i++; endforeach ?>
+
+		<?php foreach($articles[1] as $user) {
+			include('view/template/user.php');
+		}?>
 	</main>
 
 	<footer class="main-footer">

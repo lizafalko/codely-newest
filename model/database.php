@@ -34,6 +34,32 @@
 		}
 	}
 
+	function check_if_blacklisted($link, $master_id, $slave_id) {
+		$query = "SELECT COUNT(id_blacklist) FROM blacklist WHERE id_master=".$master_id." AND id_slave=".$slave_id;
+		$result = mysqli_query($link, $query);
+
+		if (mysqli_fetch_array($result)[0] == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	function toggle_blacklist($link, $master_id, $slave_id) {
+		if (!check_if_blacklisted($link, $master_id, $slave_id)) {
+			$inserting_query = "INSERT INTO blacklist (id_master, id_slave) VALUES (%d, %d)";
+			$query = sprintf($inserting_query, $master_id, $slave_id);
+			$result = mysqli_query($link, $query);
+			if (!$result) 
+				die (mysql_error());
+		} else {
+			$deleting_query = "DELETE FROM blacklist WHERE id_master=".$master_id." AND id_slave=".$slave_id;
+			$result = mysqli_query($link, $deleting_query);
+			if (!$result) 
+				die (mysql_error());
+		}
+	}
+
 	function like_article($link, $id_article) {
 		if(!check_article_likes($link, $id_article)) {
 			$inserting_query = "INSERT INTO likes_article (id_article, id_user) VALUES (%d, %d)";
@@ -127,6 +153,44 @@
 		}
 
 		return $articles;
+	}
+
+	function search($link, $search_query) {
+		$query = "SELECT * FROM article ORDER BY date_article DESC";
+		$result = mysqli_query($link, $query);
+
+		if (!$result)
+			die(mysql_error());
+		$n = mysqli_num_rows($result);
+		$articles = array();
+
+		for($i = 0; $i < $n; $i++) {
+			$row = mysqli_fetch_assoc($result);
+
+			if (strstr($row['title_article'].$row['text_article'], $search_query) !== false) {
+				$articles[] = $row;
+			}
+
+		}
+
+		$query = "SELECT * FROM user";
+		$result = mysqli_query($link, $query);
+
+		if (!$result)
+			die(mysql_error());
+		$n = mysqli_num_rows($result);
+		$users = array();
+
+		for($i = 0; $i < $n; $i++) {
+			$row = mysqli_fetch_assoc($result);
+
+			if (strstr($row['name_user'].$row['surname_user'], $search_query) !== false) {
+				$users[] = $row;
+			}
+
+		}
+
+		return [$articles, $users];
 	}
 
 	function check_if_fave_article($link, $user, $article) {
@@ -405,5 +469,36 @@
 			die(mysql_error());
 
 		return mysqli_fetch_array($result)[0];
+	}
+
+	function edit_user_space($link, $id, $surname, $name, $login, $birthdate, $work, $study, $phone, $about, $photo) {
+		if ($_SESSION['user'] == $id) {
+			$surname = trim($surname);
+			$name = trim($name);
+			$login = trim($login);
+			$birthdate = trim($birthdate);
+			$work = trim($work);
+			$study = trim($study);
+			$phone = trim($phone);
+			$about = trim($about);
+			$photo = trim($photo);
+
+			$inserting_query = 'UPDATE user SET surname_user="%s", name_user="%s", login_user="%s", birthdate_user="%s", work_user="%s", study_user="%s", phone_user="%s", about_user="%s", photo_user="%s" WHERE id_user='.$id;
+			$query = sprintf( $inserting_query,
+				mysqli_real_escape_string($link, $surname),
+				mysqli_real_escape_string($link, $name),
+				mysqli_real_escape_string($link, $login),
+				mysqli_real_escape_string($link, $birthdate),
+				mysqli_real_escape_string($link, $work),
+				mysqli_real_escape_string($link, $study),
+				mysqli_real_escape_string($link, $phone),
+				mysqli_real_escape_string($link, $about),
+				mysqli_real_escape_string($link, $photo));
+
+			$result = mysqli_query($link, $query);
+
+			if (!$result)
+				die(mysql_error());
+		}
 	}
 ?>

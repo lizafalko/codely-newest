@@ -12,14 +12,16 @@
 		$id_article = $_GET["id"];
 		like_article($link, $id_article);
 		header("Location: article.php?id=".$id_article);
-	}
 
-	if ($action == "search") {
-		$query = $_POST["search"];
-		header("Location: https://www.google.ru/search?q=".$query."%20site%3Avk.com"); // заменить сайт!
-	}
 
-	if ($action == "add-question") {
+	} else if ($action == "search") {
+		$query = $_POST["query"];
+		$articles = search($link, $query);
+
+		include("view/search-results.php");
+
+		
+	} else if ($action == "add-question") {
 		if(!empty($_POST)) {
 			add_article($link, $_POST["title"], $_POST["text"], 1, $_SESSION["user"]);
 			header("Location: index.php");
@@ -35,8 +37,10 @@
 		}
 		include("view/create-article.php");
 
-
-
+	} else if ($action == "blacklist") {
+		toggle_blacklist($link, $_SESSION['user'], $_GET['id']);
+		header("Location: index.php?action=user-space&id=".$_GET['id']);
+		
 	} else if ($action == "edit-article") {
 		$article_id = $_GET['id'];
 		$article = get_one_article($link, $_GET['id']);
@@ -98,6 +102,26 @@
 		}
 
 	 */
+
+	} else if ($action == "edit-user") {
+		$id = $_SESSION['user'];
+		$user = get_user_by_id($link, $id);
+
+		if(empty($_POST)) {
+			include("view/edit-user.php");
+		} else {
+			$surname = $_POST['surname'];
+			$name = $_POST['name'];
+			$login = $_POST['login'];
+			$birthdate = $_POST['birthdate'];
+			$work = $_POST['work'];
+			$study = $_POST['study'];
+			$phone = $_POST['phone'];
+			$about = $_POST['about'];
+			$photo = $_POST['photo'];
+			edit_user_space($link, $id, $surname, $name, $login, $birthdate, $work, $study, $phone, $about, $photo);
+			header("Location: index.php?action=user-space&id=".$id);
+		}
 
 
 	} else if ($action == "register") {
