@@ -113,6 +113,41 @@
 		return mysqli_num_rows($result);
 	}
 
+	function get_same($link, $question_id) {
+		$query = "SELECT COUNT(*) FROM same WHERE id_question=".$question_id;
+
+		$result = mysqli_query($link, $query);
+
+		if (!$result)
+			die(mysql_error());
+
+		return mysqli_fetch_array($result)[0];
+	}
+
+	function check_same($link, $user_id, $question_id) {
+		$query = "SELECT * FROM same WHERE id_question=".$question_id." AND id_user=".$user_id;
+		$result = mysqli_query($link, $query);
+		if (!$result) 
+			die (mysql_error());
+
+		return mysqli_num_rows($result) > 0;
+	}
+
+	function toggle_same($link, $user_id, $question_id) {
+		if (!check_same($link, $user_id, $question_id)) {
+			$inserting_query = "INSERT INTO same (id_user, id_question) VALUES (%d, %d)";
+			$query = sprintf($inserting_query, $user_id, $question_id);
+			$result = mysqli_query($link, $query);
+			if (!$result) 
+				die (mysql_error());
+		} else {
+			$deleting_query = "DELETE FROM same WHERE id_question=".$question_id." AND id_user=".$user_id;
+			$result = mysqli_query($link, $deleting_query);
+			if (!$result) 
+				die (mysql_error());
+		}
+	}
+
 	function like_comment($link, $id_comment) {
 		if(!check_comment_likes($link, $id_comment)) {
 			$inserting_query = "INSERT INTO likes_comment (id_comment, id_user) VALUES (%d, %d)";
@@ -303,7 +338,7 @@
 	}
 
 	function get_all_comments($link, $id) {
-		$query = "SELECT * FROM comment WHERE id_article=".$id." ORDER BY date_comment DESC";
+		$query = "SELECT * FROM comment WHERE id_article=".$id." ORDER BY likes_comment DESC";
 		$result = mysqli_query($link, $query);
 
 		if (!$result)

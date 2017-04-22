@@ -22,6 +22,12 @@
 			<span class="question_tag">Вопрос</span>
 		<?php endif ?>
 
+		<?php if(check_same($link, $_SESSION['user'], $id)): ?>
+			<span>Отметок &laquo;У меня похожий вопрос&raquo;: <?=get_same($link, $_GET['id'])?></span>
+		<?php else: ?>
+			<a href="index.php?action=same&id=<?=$id?>">У меня похожий вопрос</a>
+		<?php endif ?>
+
 
 		<!-- Редактировать -->
 		<?php if($article['id_user'] == $_SESSION['user']): ?>

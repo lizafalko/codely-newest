@@ -20,6 +20,15 @@
 
 		include("view/search-results.php");
 
+	} else if ($action == "same") {
+		if (isset($_SESSION['user'])) {
+			$user = $_SESSION['user'];
+			$question = $_GET['id'];
+
+			toggle_same($link, $user, $question);
+
+			header("Location: article.php?id=".$question);
+		}
 		
 	} else if ($action == "add-question") {
 		if(!empty($_POST)) {

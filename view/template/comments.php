@@ -16,14 +16,15 @@
 	<?php endif ?>
 </section>
 
-<?php foreach($comments as $comment): ?>
-<article class="article article--ident">
+<?php $i = 0; foreach($comments as $comment): ?>
+<article class="article article--ident comment">
 	<!-- comments themselves -->
 	<section class="comment__header comment__part">
 		<img class="comment_avatar" src="<?=get_user_by_id($link, $comment["id_user"])["photo_user"] ?>" width="30" height="30">
 		<span class="comment__nickname">
 			<?=get_user_by_id($link, $comment["id_user"])["name_user"] ?>
 			<?=get_user_by_id($link, $comment["id_user"])["surname_user"] ?>
+			<?=$i==0?" (Лучший ответ)":"" ?>
 		</span>
 		<?php if (isset($_SESSION["user"])) {
 			$user_id = $_SESSION["user"];
@@ -54,4 +55,4 @@
 		</section>
 	</footer>
 </article>
-<?php endforeach ?>
+<?php $i++; endforeach ?>
