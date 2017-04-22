@@ -1,11 +1,13 @@
 <?php if(isset($_SESSION['user'])): ?>
 	<?php
-		$name = get_user_by_id($link, $_SESSION['user'])["name_user"];
-		$surname = get_user_by_id($link, $_SESSION['user'])["surname_user"];
+		$name_header = get_user_by_id($link, $_SESSION['user'])["name_user"];
+		$surname_header = get_user_by_id($link, $_SESSION['user'])["surname_user"];
+
+		$fallback = isset($_GET['fallback']) ? $_GET['fallback'] : "index.php";
 	?>
 	<a class="main-header__link" href="index.php?action=user-space&id=<?=$_SESSION["user"] ?>&fallback=<?=$fallback?>">
 		<img class="main-header__avatar" src="<?=get_user_by_id($link, $_SESSION['user'])["photo_user"] ?>" width="50" height="50">
-		<?=$name." ".$surname?>
+		<?=$name_header." ".$surname_header?>
 	</a>
 	
 	<a class="main-header__link" href="index.php">Главная</a>

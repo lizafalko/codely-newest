@@ -20,18 +20,31 @@
 	<main class="main">
 		<div class="container container--left">
 			<h3 class="favorite--materials">Избранные авторы</h3>
-			<article class="article">
-				<a class="favorite--author-links" href="#">Александр ИЛьяшенко</a>
-			</article>
-			<article class="article">
-				<a class="favorite--author-links" href="#">Александр ИЛьяшенко</a>
-			</article>
-			<article class="article">
-				<a class="favorite--author-links" href="#">Александр ИЛьяшенко</a>
-			</article>
-			<article class="article">
-				<a class="favorite--author-links" href="#">Александр ИЛьяшенко</a>
-			</article>
+			<?php if (get_fave_authors($link, $_SESSION['user'])): ?>
+				<?php 
+					$authors = get_fave_authors($link, $_SESSION['user']);
+				?>
+				<?php foreach($authors as $author): ?>
+					<?php 
+						$fave_author = get_user_by_id($link, $author['id_author']);
+
+						$fave_name = $fave_author['name_user'];
+						$fave_surname = $fave_author['surname_user'];
+					?>
+					<article class="article">
+						<a class="favorite--author-links" href="index.php?action=user-space&id=<?=$author['id_author']?>">
+							<?=$fave_name." ".$fave_surname ?>
+						</a>
+
+						<a href="index.php?action=unfave&id_author=<?=$author['id_author']?>" style="float: right;">Удалить</a>
+					</article>
+				<?php endforeach ?>
+
+			<?php else: ?>
+				<article class="article">
+					У вас пока нет избранных авторов.
+				</article>
+			<?php endif ?>
 		</div>
 		<div class="container container--right">
 			<h3 class="favorite--materials">Избранные материалы</h3>

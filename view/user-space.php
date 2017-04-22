@@ -9,6 +9,8 @@
 	$phone = $user['phone_user'];
 	$about = $user['about_user'];
 	$photo_link = $user['photo_user'];
+
+	$fallback = isset($_GET['fallback']) ? $_GET['fallback'] : "index.php";
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +36,14 @@
 		<div class="container container--left">
 			<img class="user-space-avatar" src="<?=$photo_link ?>" width="250" height="250">
 			<h1 class="user-space-nickname"><?=$name?> <?=$surname?></h1>
-			
+
+			<?php if($_GET['id'] != $_SESSION['user']): ?>
+				<?php if(!check_if_fave_author($link, $_SESSION['user'], $_GET['id'])): ?>
+					<a href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Добавить в избранное</a>
+				<?php else: ?>
+					<a href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Убрать из избранного</a>
+				<?php endif ?>
+			<?php endif ?>
 		</div>
 		<div class="container container--right">
 			<div class="article article-est" style="text-align: left;">

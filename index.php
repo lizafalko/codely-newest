@@ -146,6 +146,27 @@
 			include("view/bookmarks.php");
 		}
 
+	} else if ($action == "fave") {
+		if (isset($_SESSION['user'])) {
+			$user = $_SESSION['user'];
+			$author = $_GET['id_author'];
+			$fallback = $_GET['fallback'];
+
+			toggle_fave_author($link, $user, $author);
+
+			header("Location: index.php?action=user-space&id=".$author."&fallback=".$fallback);
+		}
+
+	} else if ($action == "unfave") {
+		if (isset($_SESSION['user'])) {
+			$user = $_SESSION['user'];
+			$author = $_GET['id_author'];
+
+			toggle_fave_author($link, $user, $author);
+
+			header("Location: index.php?action=bookmarks");
+		}
+
 	} else if ($action == "exit") {
 		unset($_SESSION['user']);
 		header("Location: index.php");

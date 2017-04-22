@@ -124,6 +124,46 @@
 		return $articles;
 	}
 
+	function check_if_fave_author($link, $user, $author) {
+		$query = "SELECT * FROM favorite_authors WHERE id_user=".$user." AND id_author=".$author;
+		$result = mysqli_query($link, $query);
+
+		if (!$result)
+			die(mysql_error());
+
+		$n = mysqli_num_rows($result);
+
+		return $n > 0;
+	}
+
+	function toggle_fave_author($link, $user, $author) {
+		if (!check_if_fave_author($link, $user, $author)) {
+			$query = "INSERT INTO favorite_authors (id_user, id_author) VALUES (".$user.", ".$author.")";
+		} else {
+			$query = "DELETE FROM favorite_authors WHERE id_user=".$user." AND id_author=".$author;
+		}
+		$result = mysqli_query($link, $query);
+		if (!$result)
+			die(mysql_error());
+	}
+
+	function get_fave_authors($link, $user) {
+		$query = "SELECT * FROM favorite_authors WHERE id_user=".$user;
+		$result = mysqli_query($link, $query);
+		if (!$result)
+			die(mysql_error());
+
+		$n = mysqli_num_rows($result);
+		$authors = array();
+
+		for($i = 0; $i < $n; $i++) {
+			$row = mysqli_fetch_assoc($result);
+			$authors[] = $row;
+		}
+
+		return $authors;
+	}
+
 	function get_all_comments($link, $id) {
 		$query = "SELECT * FROM comment WHERE id_article=".$id." ORDER BY date_comment DESC";
 		$result = mysqli_query($link, $query);
