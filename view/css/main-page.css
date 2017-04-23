@@ -600,4 +600,9 @@
 .glyphicon-comment {
 	color: #D79B83 !important;
 	font-size: 24px !important;
+	transition: color .7s ease !important;
+}
+
+.glyphicon-comment:hover {
+	color: #b39587 !important;
 }

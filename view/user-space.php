@@ -46,12 +46,12 @@
 				<?php endif ?>
 
 				<?php if(!check_if_blacklisted($link, $_SESSION['user'], $_GET['id'])): ?>
-					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Добавить в ЧС</a>
+					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Добавить в черный список</a>
 				<?php else: ?>
-					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Убрать из ЧС</a>
+					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Убрать из черного списка</a>
 				<?php endif ?>
 			<?php else: ?>
-				<a class="add-to-list" href="index.php?action=edit-user"><i class="glyphicon glyphicon-pencil pencil-color edit-list"></i>Редактировать</a>
+				<a class="add-to-list" href="index.php?action=edit-user"><i class="glyphicon glyphicon-cog pencil-color edit-list"></i>Редактировать</a>
 			<?php endif ?>
 		</div>
 		<div class="container container--right">
