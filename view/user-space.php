@@ -37,21 +37,22 @@
 		<div class="container container--left">
 			<img class="user-space-avatar" src="<?=$photo_link ?>" width="250" height="250">
 			<h1 class="user-space-nickname"><?=$name?> <?=$surname?></h1>
+			<?php if (isset($_SESSION['user'])): ?>
+				<?php if($_GET['id'] != $_SESSION['user']): ?>
+					<?php if(!check_if_fave_author($link, $_SESSION['user'], $_GET['id'])): ?>
+						<a class="add-to-list" href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Добавить в избранное</a>
+					<?php else: ?>
+						<a class="add-to-list" href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Убрать из избранного</a>
+					<?php endif ?>
 
-			<?php if($_GET['id'] != $_SESSION['user']): ?>
-				<?php if(!check_if_fave_author($link, $_SESSION['user'], $_GET['id'])): ?>
-					<a class="add-to-list" href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Добавить в избранное</a>
+					<?php if(!check_if_blacklisted($link, $_SESSION['user'], $_GET['id'])): ?>
+						<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Добавить в черный список</a>
+					<?php else: ?>
+						<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Убрать из черного списка</a>
+					<?php endif ?>
 				<?php else: ?>
-					<a class="add-to-list" href="index.php?action=fave&id_author=<?=$_GET['id']?>&fallback=<?=$fallback?>">Убрать из избранного</a>
+					<a class="add-to-list" href="index.php?action=edit-user"><i class="glyphicon glyphicon-cog pencil-color edit-list"></i>Редактировать</a>
 				<?php endif ?>
-
-				<?php if(!check_if_blacklisted($link, $_SESSION['user'], $_GET['id'])): ?>
-					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Добавить в черный список</a>
-				<?php else: ?>
-					<a class="add-to-list" href="index.php?action=blacklist&id=<?=$_GET['id']?>">Убрать из черного списка</a>
-				<?php endif ?>
-			<?php else: ?>
-				<a class="add-to-list" href="index.php?action=edit-user"><i class="glyphicon glyphicon-cog pencil-color edit-list"></i>Редактировать</a>
 			<?php endif ?>
 		</div>
 		<div class="container container--right">

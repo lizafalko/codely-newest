@@ -25,7 +25,7 @@
 
 
 		<!-- Редактировать -->
-		<?php if($article['id_user'] == $_SESSION['user']): ?>
+		<?php if(isset($_SESSION['user']) && $article['id_user'] == $_SESSION['user']): ?>
 			<?php if($article['is_question']): ?>
 				<a href="index.php?action=edit-question&id=<?=$id?>">
 					<span class="glyphicon glyphicon-pencil article__fave-icon pencil-color"></span>
@@ -39,20 +39,22 @@
 
 		<!-- Удалить -->
 
-		<?php if($article['id_user'] == $_SESSION['user']): ?>
+		<?php if(isset($_SESSION['user']) && $article['id_user'] == $_SESSION['user']): ?>
 			<a href="index.php?action=delete&id=<?=$id?>">
 				<span class="glyphicon glyphicon-remove article__like-icon remove-color"></span>
 			</a>
 		<?php endif ?>
 	</header>
+	<?php if(isset($_SESSION['user']) && $article['is_question']): ?>
 	<div>
-		<?php if(check_same($link, $_SESSION['user'], $id)): ?>
+		<?php if(isset($_SESSION['user']) && check_same($link, $_SESSION['user'], $id)): ?>
 			<span class="hello" style="background-color: #D79B83; color: white;">Отметок &laquo;У меня похожий вопрос&raquo;: <?=get_same($link, $_GET['id'])?></span>
 		<?php else: ?>
 			<a class="hello" href="index.php?action=same&id=<?=$id?>">У меня похожий вопрос</a>
 		<?php endif ?>
-	
 	</div>
+		<?php endif ?>
+
 	<h2 class="article__title">
 		<a href="article.php?id=<?=$article['id_article'] ?>">
 			<?=$title?>
@@ -62,13 +64,15 @@
 		<?=$text?>
 	</p>
 	<footer class="article__footer">
+		<?php if(isset($_SESSION['user'])): ?>
 		<a href="index.php?action=fave-article&id_article=<?=$article['id_article'] ?>">
-			<?php if(check_if_fave_article($link, $_SESSION['user'], $article['id_article'])): ?>
+			<?php if(isset($_SESSION['user']) && check_if_fave_article($link, $_SESSION['user'], $article['id_article'])): ?>
 				<span class="glyphicon glyphicon-star article__fave-icon"></span>
 			<?php else: ?>
 				<span class="glyphicon glyphicon-star-empty article__fave-icon"></span>
 			<?php endif ?>
 		</a>
+		<?php endif ?>
 
 		<span class="article__date">
 			<?=$date?>
@@ -77,14 +81,16 @@
 			<span class="article__likes-count">
 				<?=$likes?>
 			</span>
-			<a class="article__like"
-				href="index.php?action=like&id=<?=$article['id_article']?>">
-				<?php if(check_article_likes($link, $id)): ?>	<!-- if already liked -->
-				<span class="glyphicon glyphicon-heart article__like-icon"></span>
-				<?php else: ?>
-				<span class="glyphicon glyphicon-heart-empty article__like-icon"></span>
-				<?php endif ?>
-			</a>
+			<?php if(isset($_SESSION['user'])): ?>
+				<a class="article__like"
+					href="index.php?action=like&id=<?=$article['id_article']?>">
+					<?php if(check_article_likes($link, $id)): ?>	<!-- if already liked -->
+					<span class="glyphicon glyphicon-heart article__like-icon"></span>
+					<?php else: ?>
+					<span class="glyphicon glyphicon-heart-empty article__like-icon"></span>
+					<?php endif ?>
+				</a>
+			<?php endif ?>
 		</section>
 	</footer>
 </article>

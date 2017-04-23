@@ -19,6 +19,7 @@
 
 	<main class="main">
 		<?php include('view/template/search.php') ?>
+		<?php if(!isset($_SESSION['user'])) include('view/template/greeting.php') ?>
 		<?php $i = 0; foreach($articles as $article): ?>
 		<?php $fallback = "index.php#article".$i; include('view/template/article.php') ?>
 		<?php $i++; endforeach ?>

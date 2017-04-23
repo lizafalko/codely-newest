@@ -45,13 +45,16 @@
 			<span>
 				<?=get_comment_likes($link, $comment["id_comment"]) ?>
 			</span>
-			<a class="article__like" href="article.php?action=like-comment&article=<?=$_GET['id']?>&comment=<?=$comment['id_comment']?>">
-				<?php if(check_comment_likes($link, $comment["id_comment"])): ?>	<!-- if already liked -->
-					<span class="glyphicon glyphicon-heart article__like-icon"></span>
-				<?php else: ?>
-					<span class="glyphicon glyphicon-heart-empty article__like-icon"></span>
-				<?php endif ?>
-			</a>
+			<?php if(isset($_SESSION['user'])): ?>
+				<a class="article__like" href="article.php?action=like-comment&article=<?=$_GET['id']?>&comment=<?=$comment['id_comment']?>">
+					<?php if(check_comment_likes($link, $comment["id_comment"])): ?>	<!-- if already liked -->
+						<span class="glyphicon glyphicon-heart article__like-icon"></span>
+					<?php else: ?>
+						<span class="glyphicon glyphicon-heart-empty article__like-icon"></span>
+					<?php endif ?>
+				</a>
+			<?php endif ?>
+
 		</section>
 	</footer>
 </article>

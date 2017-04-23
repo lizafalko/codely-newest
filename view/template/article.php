@@ -30,7 +30,10 @@
 		</a>
 	</h2>
 	<p class="article__text">
-		<?=$text?>
+		<?=mb_strimwidth($text, 0, 250).'...'?>
+		<a class="article__comment-link" href="article.php?id=<?=$article['id_article']; ?>" id="article<?=$i?>">
+			Читать далее
+		</a>
 	</p>
 	<footer class="article__footer">
 		<span class="article__date">

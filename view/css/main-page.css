@@ -539,14 +539,21 @@
 	background-color: #D79B83 !important;
 	border-radius: 9px !important;
 	outline-color: #D7B382 !important;
+	color: white !important;
+	outline: none !important;
+}
+
+.sand-button--advanced {
+	background: linear-gradient(-180deg, #f7802f 0%, #d25a08 90%);
+	transition: all .3s !important;
+}
+
+.sand-button--advanced:hover {
+	transform: scale(1.04);
 }
 
 .sand-button:hover {
 	background-color: #b39587 !important;
-}
-
-.sand-button {
-	outline: none !important;
 }
 
 .remove-color {
