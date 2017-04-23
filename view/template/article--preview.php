@@ -25,7 +25,9 @@
 		<!-- Вопрос -->
 		<!-- Редактировать -->
 		<!-- Удалить -->
-		<a href="index.php?action=unfave-article&id_article=<?=$id?>">Удалить из избранного</a>
+		<a href="index.php?action=unfave-article&id_article=<?=$id?>">
+			<span class="glyphicon glyphicon-remove article__like-icon remove-color"></span>
+		</a>
 	</header>
 	<h2 class="article__title">
 		<a href="article.php?id=<?=$article['id_article'] ?>">

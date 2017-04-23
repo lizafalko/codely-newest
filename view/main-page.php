@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="view/img/favicon.ico">
-	<title>Главная &ndash; Codely</title>
+	<title>Codely</title>
 	<link href="view/css/bootstrap.min.css" rel="stylesheet">
 	<!-- <link href="view/css/semantic.min.css" rel="stylesheet"> -->
 	<link href="view/css/ie10-viewport-bug-workaround.css" rel="stylesheet">

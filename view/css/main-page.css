@@ -321,7 +321,9 @@
 }
 
 .article--ident {
-	margin-left: 700px;
+	max-width: 700px;
+	margin-left: 100px;
+	margin-right: 700px;
 }
 
 .article--transparent,
@@ -543,6 +545,10 @@
 	background-color: #b39587 !important;
 }
 
+.sand-button {
+	outline: none !important;
+}
+
 .remove-color {
 	color: #D79B83 !important;
 }
@@ -564,6 +570,7 @@
 	transition: background-color .7s ease;
 	color: white;
 	background-color: #D79B83;
+	user-select: none;
 }
 
 .add-to-list:hover {
@@ -588,4 +595,9 @@
 
 .form-control {
 	margin-top: 7px;
+}
+
+.glyphicon-comment {
+	color: #D79B83 !important;
+	font-size: 24px !important;
 }

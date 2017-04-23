@@ -41,7 +41,9 @@
 								<?=$fave_name." ".$fave_surname ?>
 							</span>
 						</div>
-						<a href="index.php?action=unfave&id_author=<?=$author['id_author']?>">Удалить</a>
+						<a href="index.php?action=unfave&id_author=<?=$author['id_author']?>">
+							<span class="glyphicon glyphicon-remove article__like-icon remove-color"></span>
+						</a>
 					</article>
 				<?php endforeach ?>
 

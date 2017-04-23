@@ -355,16 +355,16 @@
 	}
 
 	function register_user($link, $surname, $name, $login, $password) {
-		$login = trim($login);
+		$login = strip_tags(trim($login));
 
 		$checking_query = 'SELECT * FROM user WHERE login_user="'.$login.'"';
 		$checking_result = mysqli_query($link, $checking_query);
 		if (!mysqli_fetch_assoc($checking_result)){
 			$inserting_query = 'INSERT INTO user (surname_user, name_user, login_user, password_user) VALUES ("%s", "%s", "%s", "%s")';
-			$surname = trim($surname);
-			$name = trim($name);
+			$surname = strip_tags(trim($surname));
+			$name = strip_tags(trim($name));
 			
-			$password = trim($password);
+			$password = strip_tags(trim($password));
 
 			$query = sprintf( $inserting_query, 
 				mysqli_real_escape_string($link, $surname),
@@ -386,8 +386,8 @@
 		// 0 - user doesn't exist
 		// 2 - wrong password
 		// 1 - OK
-		$login = trim($login);
-		$password = trim($password);
+		$login = strip_tags(trim($login));
+		$password = strip_tags(trim($password));
 
 		$checking_query = 'SELECT * FROM user WHERE login_user="'.$login.'"';
 		$checking_result = mysqli_query($link, $checking_query);
@@ -451,7 +451,7 @@
 
 	function add_comment($link, $id_user, $id_article, $text_comment) {
 		$date_comment = time();
-		$text_comment = trim($text_comment);
+		$text_comment = strip_tags(trim($text_comment));
 
 		$inserting_query = 'INSERT INTO comment (id_user, id_article, text_comment, date_comment) VALUES (%d, %d, "%s", "%s")';
 
@@ -493,8 +493,8 @@
 	function add_article($link, $title_article, $text_article, $is_question = 0, $id_user = 1) {
 		// $date_article = date('c', time());
 		$date_article = time();
-		$title_article = trim($title_article);
-		$text_article = trim($text_article);
+		$title_article = strip_tags(trim($title_article));
+		$text_article = strip_tags(trim($text_article));
 
 		$inserting_query = 'INSERT INTO article (title_article, date_article, id_user, text_article, is_question) VALUES ("%s", "%s", %d, "%s", %d)';
 		$query = sprintf( $inserting_query, 
@@ -512,8 +512,8 @@
 
 	function edit_article($link, $id_article, $article_heading_new, $article_text_new, $id_user) {
 		if ($_SESSION['user'] == $id_user) {
-			$article_heading_new = trim($article_heading_new);
-			$article_text_new = trim($article_text_new);
+			$article_heading_new = strip_tags(trim($article_heading_new));
+			$article_text_new = strip_tags(trim($article_text_new));
 
 			$inserting_query = 'UPDATE article SET title_article="%s", text_article="%s" WHERE id_article='.$id_article;
 			$query = sprintf( $inserting_query,
@@ -547,15 +547,15 @@
 
 	function edit_user_space($link, $id, $surname, $name, $login, $birthdate, $work, $study, $phone, $about, $photo) {
 		if ($_SESSION['user'] == $id) {
-			$surname = trim($surname);
-			$name = trim($name);
-			$login = trim($login);
-			$birthdate = trim($birthdate);
-			$work = trim($work);
-			$study = trim($study);
-			$phone = trim($phone);
-			$about = trim($about);
-			$photo = trim($photo);
+			$surname = strip_tags(trim($surname));
+			$name = strip_tags(trim($name));
+			$login = strip_tags(trim($login));
+			$birthdate = strip_tags(trim($birthdate));
+			$work = strip_tags(trim($work));
+			$study = strip_tags(trim($study));
+			$phone = strip_tags(trim($phone));
+			$about = strip_tags(trim($about));
+			$photo = strip_tags(trim($photo));
 
 			$inserting_query = 'UPDATE user SET surname_user="%s", name_user="%s", login_user="%s", birthdate_user="%s", work_user="%s", study_user="%s", phone_user="%s", about_user="%s", photo_user="%s" WHERE id_user='.$id;
 			$query = sprintf( $inserting_query,
