@@ -1,6 +1,6 @@
+	<?php if (isset($_SESSION["user"]) && !check_if_blacklisted($link, $article['id_user'], $_SESSION['user'])): ?>
 <section class="article article--ident">
 	<!-- "create article" sign -->
-	<?php if (isset($_SESSION["user"])): ?>
 	<section class="comment--create">
 		<form action="article.php?action=add-comment&id=<?=$article['id_article'] ?>" method="POST">
 			<input type="checkbox" id="hide-create-comment">
@@ -13,8 +13,8 @@
 			</div>
 		</form>
 	</section>
-	<?php endif ?>
 </section>
+	<?php endif ?>
 
 <?php $i = 0; foreach($comments as $comment): ?>
 <article class="article article--ident comment">
