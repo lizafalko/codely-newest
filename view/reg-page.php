@@ -23,44 +23,45 @@
 		</header>
 		<main class="main">
 			<div class="container">
-				<form class="form-horizontal" action="index.php?action=register" method="POST">
-					<div class="control-group">
-						<label class="control-label" for="username">Имя</label>
-						<div class="controls">
-							<input type="text" id="username" name="name" placeholder="Введите имя" class="form-control" required autofocus>
+				<div class="article article--transparent">
+					<a class="emphasis-link" href="index.php">
+						<i class="glyphicon glyphicon-menu-left"></i><span class="sign"></span>
+					</a>
+				</div>
+				<div class="article">
+					<h4>Регистрация</h4>
+					<form class="form-horizontal" action="index.php?action=register" method="POST">
+						<div class="control-group">
+							<label class="control-label" for="username">Имя</label>
+							<div class="controls">
+								<input type="text" id="username" name="name" placeholder="Введите имя" class="form-control" required autofocus>
+							</div>
 						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label"  for="username">Фамилия</label>
-						<div class="controls">
-							<input type="text" id="username" name="surname" placeholder="Введите фамилию" class="form-control" required>
+						<div class="control-group">
+							<label class="control-label"  for="username">Фамилия</label>
+							<div class="controls">
+								<input type="text" id="username" name="surname" placeholder="Введите фамилию" class="form-control" required>
+							</div>
 						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="email">E-mail</label>
-						<div class="controls">
-							<input type="email" id="email" name="login" placeholder="Введите адрес электронной почты" class="form-control" required>
+						<div class="control-group">
+							<label class="control-label" for="email">E-mail</label>
+							<div class="controls">
+								<input type="email" id="email" name="login" placeholder="Введите адрес электронной почты" class="form-control" required>
+							</div>
 						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="password">Пароль</label>
-						<div class="controls">
-							<input type="password" id="password" name="password" placeholder="Введите пароль" class="form-control" required>
+						<div class="control-group">
+							<label class="control-label" for="password">Пароль</label>
+							<div class="controls">
+								<input type="password" id="password" name="password" placeholder="Введите пароль" class="form-control" required>
+							</div>
 						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label"  for="password_confirm">Подтверждение пароля</label>
-						<div class="controls">
-							<input type="password" id="password_confirm" name="password_confirm" placeholder="Введите пароль" class="form-control" required>
-							<p class="help-block">Пожалуйста подтвердите пароль</p>
+						<div class="control-group">
+							<button type="submit" class="new-article__button btn btn-primary sand-button">
+								Зарегистрироваться
+							</button>
 						</div>
-					</div>
-					<div class="control-group">
-						<button type="submit" class="new-article__button btn btn-primary sand-button">
-							Зарегистрироваться
-						</button>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</main>
 		<footer class="main-footer">

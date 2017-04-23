@@ -23,25 +23,33 @@
 		</header>
 		<main class="main">
 			<div class="container">
-				<form class="form-horizontal" action="index.php?action=login" method="POST">
-					<div class="control-group">
-						<label class="control-label" for="email">E-mail</label>
-						<div class="controls">
-							<input type="text" id="email" name="login" placeholder="Введите адрес электронной почты" class="form-control" required autofocus>
+				<div class="article article--transparent">
+					<a class="emphasis-link" href="index.php">
+						<i class="glyphicon glyphicon-menu-left"></i><span class="sign"></span>
+					</a>
+				</div>
+				<div class="article">
+					<h4>Вход</h4>
+					<form class="form-horizontal" action="index.php?action=login" method="POST">
+						<div class="control-group">
+							<label class="control-label" for="email">E-mail</label>
+							<div class="controls">
+								<input type="text" id="email" name="login" placeholder="Введите адрес электронной почты" class="form-control" required autofocus>
+							</div>
 						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="password">Пароль</label>
-						<div class="controls">
-							<input type="password" id="password" name="password" placeholder="Введите пароль" class="form-control" required>
+						<div class="control-group">
+							<label class="control-label" for="password">Пароль</label>
+							<div class="controls">
+								<input type="password" id="password" name="password" placeholder="Введите пароль" class="form-control" required>
+							</div>
 						</div>
-					</div>
-					<div class="control-group">
-						<button type="submit" class="new-article__button btn btn-primary sand-button">
-							Войти
-						</button>
-					</div>
-				</form>
+						<div class="control-group">
+							<button type="submit" class="new-article__button btn btn-primary sand-button">
+								Войти
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</main>
 		<footer class="main-footer">
